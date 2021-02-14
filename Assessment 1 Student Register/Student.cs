@@ -8,7 +8,7 @@ namespace Assessment_1_School_Register
     {
         public string Name;
         public DateTime DateOfBirth;
-        public bool Gender;
+        public String Gender;
         private Attendance[] Attendances;
         int MinutesLate = 0;
         int NumberOfDays = 0;
@@ -16,18 +16,18 @@ namespace Assessment_1_School_Register
         int AbsentDays = 0;
         int LateDays = 0;
 
-        public Student(String Name, DateTime DateOfBirth, bool Gender)
+        public Student(String Name, DateTime DateOfBirth, String Gender)
         {
             this.Name = Name;
             this.DateOfBirth = DateOfBirth;
             this.Gender = Gender;
-            Attendance[] Days = new Attendance[180];
+            Attendances = new Attendance[180];
 
         }
 
-        public void AddAttendance(String AttendanceStatus, int MinutesLate)
+        public void AddAttendance(DateTime Date, String AttendanceStatus)
         {
-
+            
             if (AttendanceStatus == "Present")
             {
                 Attendances[NumberOfDays] = new Attendance(Date, AttendanceStatus);
@@ -47,8 +47,19 @@ namespace Assessment_1_School_Register
                 NumberOfDays++;
                 LateDays++;
             }
+            else
+            {
+                Console.WriteLine("Attendance Status error");
+            }
         }
-
+        public string GetName()
+        {
+            return Name;
+        }
+        public int GetNumberOfDays()
+        {
+            return NumberOfDays;
+        }
         public int GetPresentDays()
         {
             return PresentDays;
@@ -64,6 +75,22 @@ namespace Assessment_1_School_Register
         public int TotalMinutesLate()
         {
             return MinutesLate;
+        }
+
+
+        public string getAttendancestatus( DateTime d ){
+            string status = null;
+
+            for ( int i=0; i< NumberOfDays; i++){
+                if ( Attendances[i].GetDate().Equals(d) )
+                {
+                    status = Attendances[i].GetAttendanceStatus();
+                    break;
+                }
+
+
+            }
+            return status;
         }
     }
 }

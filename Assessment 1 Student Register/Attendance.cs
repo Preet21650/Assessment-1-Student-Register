@@ -13,7 +13,7 @@ namespace Assessment_1_School_Register
 
         public Attendance(DateTime Date, string AttendenceStatus)
         {
-            if (AttendenceStatus != "On Time")
+            if (AttendenceStatus != "Late")
             {
                 this.Date = Date;
                 this.AttendenceStatus = AttendenceStatus;
@@ -28,10 +28,6 @@ namespace Assessment_1_School_Register
                 Date = Date.AddHours(-8);
                 MinutesLate = (Date.Hour * 60) + Date.Minute;
                 Date.AddHours(8);
-            }
-            else
-            {
-                Console.WriteLine("Attendance Status Error");
             }
         }
         public int GetMinutesLate()
